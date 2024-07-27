@@ -1,24 +1,23 @@
 import React from 'react';
-import { USER_MAIN_DATA } from '../services/apiService'; 
+import getUserInfo from '../utils/getUserInfo'; 
 import '../styles/main.scss';
 
 /**
- * Récupère les informations d'un utilisateur en fonction de l'ID fourni.
- * 
- * @param {number} id - L'ID de l'utilisateur dont les informations doivent être récupérées.
- * @returns {Object|undefined} - Retourne l'objet de données de l'utilisateur si trouvé, sinon `undefined`.
+ * ID de l'utilisateur pour lequel les données sont récupérées.
+ * @constant {number}
  */
-const getUserInfo = (id) => {
-  return USER_MAIN_DATA.find(user => user.id === id);
-}
-
 const userId = 12; 
+
+/**
+ * Données de l'utilisateur récupérées à l'aide de la fonction `getUserInfo`.
+ * @type {Object|undefined}
+ */
 const userData = getUserInfo(userId);
 
 /**
- * Composant Home qui affiche un message de bienvenue personnalisé.
+ * Composant fonctionnel représentant la page d'accueil de l'utilisateur.
  * 
- * @returns {JSX.Element} Le composant Home rendu.
+ * @returns {JSX.Element} - Le JSX du composant `Home`. Affiche un message de bienvenue et un message de félicitations.
  */
 function Home() {
   if (!userData) {
@@ -29,7 +28,7 @@ function Home() {
     <main>
       <section className='home'>
         <h1> Bonjour <span className="red-text">{userData.userInfos.firstName}</span></h1>
-        <p>Félicitations ! Vous avez explosé vos objectifs hier 👋</p>
+        <p>Félicitation ! Vous avez explosé vos objectifs hier 👋</p>
       </section>
     </main>
   );
