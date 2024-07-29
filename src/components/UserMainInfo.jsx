@@ -6,6 +6,10 @@ import lipidIcon from '../assets/icon/fat-icon.png';
 import proteinIcon from '../assets/icon/protein-icon.png';
 import '../styles/main.scss';
 
+/**
+ * Mappage des clés de données avec leurs labels et icônes.
+ * @type {Array<Object>}
+ */
 const keyDataMapping = [
   { key: 'calorieCount', label: 'Calories', icon: calorieIcon, unit: 'kCal' },
   { key: 'proteinCount', label: 'Protéines', icon: proteinIcon, unit: 'g' },
@@ -13,6 +17,16 @@ const keyDataMapping = [
   { key: 'lipidCount', label: 'Lipides', icon: lipidIcon, unit: 'g' },
 ];
 
+/**
+ * Composant pour afficher les informations principales de l'utilisateur.
+ *
+ * Ce composant récupère et affiche les informations principales de l'utilisateur
+ * telles que les calories, protéines, glucides et lipides, avec des icônes correspondantes.
+ *
+ * @param {Object} props - Les propriétés du composant.
+ * @param {number} props.userId - L'identifiant de l'utilisateur pour lequel les données sont récupérées.
+ * @returns {JSX.Element} - Un élément JSX contenant les informations principales de l'utilisateur.
+ */
 const UserMainInfo = ({ userId }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);

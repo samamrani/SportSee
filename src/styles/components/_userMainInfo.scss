@@ -1,0 +1,45 @@
+.performance-list{
+  list-style-type: none;
+
+  li{
+      display: flex; 
+      align-items: center; 
+      margin-bottom: 50px; 
+      // padding: 10px;
+      font-size: 20px;
+      font-weight: 700;
+   
+      border-radius: 5px;
+      background: #FBFBFB;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
+      width: 258px;
+      height: 124px;
+  }
+  
+  .icon-container {
+      margin-right: 20px;
+    }
+    .data-container{
+      flex: 1;
+
+      .value {
+          display: block; 
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px;
+
+        }
+        
+        .label {
+          display: block; 
+          color: #74798C;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 24px;
+         
+        }
+    }
+ 
+ 
+}

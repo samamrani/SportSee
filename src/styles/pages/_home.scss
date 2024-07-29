@@ -1,20 +1,39 @@
-.home{
-    width: 1440px;
-    height: 1024px;
-    margin: 5rem;
-
-    .red-text {
-        color: red;
-      }     
-}
-
-.home-container{
+.home-container {
+  margin: 4rem 10rem;
+  width: 1440px;
+ 
+  padding: 0 6rem; 
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
  
 
-}
-.home-objectif{
+
+
+  .red-text {
+    color: red;
+  }
+.text-home{
+  color: #000;
+  font-family: Roboto;
+  font-size: 48px;
+  font-weight: 500;
+
+} 
+
+.home-content {
   display: flex;
-  gap: 50px;
+  // justify-content: space-between; 
+  
+ 
+}
+
+.home-activity {
+  display: flex;
+  margin-top: 2rem; 
+}
+
+.home-main {
+ 
+  margin-top: 1rem; 
+}
 }

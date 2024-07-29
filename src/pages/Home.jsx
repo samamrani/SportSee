@@ -1,34 +1,46 @@
-import React from 'react';
-import getUserInfo from '../utils/getUserInfo'; 
+import React, { useState, useEffect } from 'react';
+import { USER_MAIN_DATA } from '../services/apiService'; 
+import UserMainInfo from '../components/UserMainInfo'; 
+import UserActivity from '../components/UserActivity'; 
+import AverageSession from '../components/UserAverageSession';
+
+
 import '../styles/main.scss';
 
-/**
- * ID de l'utilisateur pour lequel les données sont récupérées.
- * @constant {number}
- */
-const userId = 12; 
-
-/**
- * Données de l'utilisateur récupérées à l'aide de la fonction `getUserInfo`.
- * @type {Object|undefined}
- */
-const userData = getUserInfo(userId);
-
-/**
- * Composant fonctionnel représentant la page d'accueil de l'utilisateur.
- * 
- * @returns {JSX.Element} - Le JSX du composant `Home`. Affiche un message de bienvenue et un message de félicitations.
- */
 function Home() {
-  if (!userData) {
-    return <div>Utilisateur non trouvé</div>;
-  }
+  const userId = 18;  
+  const [firstName, setFirstName] = useState('');
+
+  useEffect(() => {
+    const userData = USER_MAIN_DATA.find(user => user.id === userId);
+    if (userData) {
+      setFirstName(userData.userInfos.firstName);
+    }
+  }, [userId]);
 
   return (
     <main>
-      <section className='home'>
-        <h1> Bonjour <span className="red-text">{userData.userInfos.firstName}</span></h1>
-        <p>Félicitation ! Vous avez explosé vos objectifs hier 👋</p>
+      <section>
+        <div className='home-container'>
+          <h1 className='text-home'> Bonjour <span className="red-text">{firstName}</span></h1>
+          <p>Félicitation ! Vous avez explosé vos objectifs hier 👋</p>
+          <div className='home-content'>
+            <div className='home-activity-content'>
+              <div className='home-activity'>
+                <UserActivity userId={userId}/>
+              </div>
+              <div className='home-content'>
+                <div><AverageSession userId={userId}/></div>
+                <div></div>
+                <div></div>
+              </div>   
+            </div>
+
+            <div className='home-main'>
+              <UserMainInfo userId={userId} /> 
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );

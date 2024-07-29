@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import getUserActivityById from '../utils/getUserActivity'; 
-import DetailsTooltip from './DetailsTooltip'; 
+import getUserActivity from '../utils/getUserActivity'; 
+import DetailsActivityTooltip from './DetailsActivityTooltip'; 
 import icon from '../assets/images/Oval.png';
 import iconCopy from '../assets/images/Oval Copy.png';
 import '../styles/main.scss';
 
+/**
+ * Composant pour afficher l'activité quotidienne de l'utilisateur sous forme de graphique à barres.
+ *
+ * Ce composant récupère les données d'activité pour un utilisateur spécifique et les affiche en utilisant
+ * un graphique à barres. Les barres représentent le poids (kg) et les calories brûlées (kCal) avec des
+ * couleurs distinctes. Un tooltip personnalisé affiche des détails supplémentaires lors du survol des barres.
+ *
+ * @param {Object} props - Les propriétés du composant.
+ * @param {number} props.userId - L'identifiant de l'utilisateur pour lequel les données d'activité sont récupérées.
+ * @returns {JSX.Element} - Un élément JSX contenant le graphique à barres et les icônes associées.
+ */
 const UserActivity = ({ userId }) => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
@@ -13,7 +24,7 @@ const UserActivity = ({ userId }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const activityData = await getUserActivityById(userId);
+                const activityData = await getUserActivity(userId);
                 console.log('Activity data:', activityData);
                 
                 const transformedData = activityData.map((item, index) => ({
@@ -71,10 +82,9 @@ const UserActivity = ({ userId }) => {
                             domain={['dataMin - 20', 'dataMax + 10']}
                             hide={true}
                         />
-                        <Tooltip content={<DetailsTooltip />} />
+                        <Tooltip content={<DetailsActivityTooltip />} />
                         <Bar yAxisId="kilogram" dataKey="kilogram" fill="#282D30" barSize={7} radius={[50, 50, 0, 0]} />
                         <Bar yAxisId="calories" dataKey="calories" fill="#E60000" barSize={7} radius={[50, 50, 0, 0]} />
-
                     </BarChart>
                 </ResponsiveContainer>
             </div>

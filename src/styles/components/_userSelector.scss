@@ -1,0 +1,44 @@
+.user-selector {
+  position: relative;
+  margin-bottom: 30px;
+
+  .user-selector__header {
+    padding: 1px 2px;
+    cursor: pointer;
+    color: white;  
+    font-weight: 500;
+    font-size: 24px;
+    border: none;
+    
+    &:hover {
+      color: #ff0101; 
+    }
+  }
+
+  .user-selector__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 150px;
+    border-radius: 4px;
+    z-index: 1000;
+
+    .user-selector__menu-item {
+      padding: 8px 16px;
+      color: white;  
+      cursor: pointer;
+      border-bottom: 1px solid #ccc;
+      
+      &:hover {
+        background-color: #ff0101;
+      }
+    }
+    
+    .user-selector__menu-item:last-child {
+      border-bottom: none;
+    }
+  }
+}

@@ -1,5 +1,12 @@
 @import 'base/base';
 
+@import 'components/detailsActivityToolip';
+@import 'components/detailsAverageTick';
+@import 'components/detailsAverageTooltip';
+@import 'components/userAverageSession';
+@import 'components/userMainInfo';
+@import 'components/userActivity';
+
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/mainLayout';

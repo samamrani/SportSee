@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 import logo from '../assets/logo/logo.png';
 import '../styles/main.scss';
+// import UserSelector from '../components/UserSelector.jsx';
 
 function Header() {
   return (
@@ -14,7 +15,7 @@ function Header() {
               <Link to="/">Accueil</Link>
             </li>
             <li>
-              <Link to="/profil">Profil</Link> 
+            <Link to="/">Profile</Link>
             </li>
             <li>
               <Link to="/reglages">Réglages</Link>  
