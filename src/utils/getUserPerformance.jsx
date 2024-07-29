@@ -7,7 +7,13 @@ import { USER_PERFORMANCE } from '../services/apiService';
  * @returns {Object|undefined} - Retourne l'objet contenant les données de performance de l'utilisateur si trouvé, sinon `undefined`.
  */
 const getUserPerformance = (id) => {
-  return USER_PERFORMANCE.find(performance => performance.userId === id);
+  const session = USER_PERFORMANCE.find(performance => performance.userId === id);
+  if (session) {
+    return { data: session.data, kind: session.kind };
+  }
+  return { data: [], kind: {} };
 }
 
-export default getUserPerformance;
+
+
+export default getUserPerformance; 

@@ -3,12 +3,14 @@ import { USER_MAIN_DATA } from '../services/apiService';
 import UserMainInfo from '../components/UserMainInfo'; 
 import UserActivity from '../components/UserActivity'; 
 import AverageSession from '../components/UserAverageSession';
-
+import UserPerformanceRadar from '../components/UserPerformanceRadar';
 
 import '../styles/main.scss';
 
+
+
 function Home() {
-  const userId = 18;  
+  const userId = 12;  
   const [firstName, setFirstName] = useState('');
 
   useEffect(() => {
@@ -30,8 +32,8 @@ function Home() {
                 <UserActivity userId={userId}/>
               </div>
               <div className='home-content'>
-                <div><AverageSession userId={userId}/></div>
-                <div></div>
+                <div><AverageSession userId={userId} /></div>
+                <div><UserPerformanceRadar userId={userId} /></div>  
                 <div></div>
               </div>   
             </div>
@@ -40,6 +42,8 @@ function Home() {
               <UserMainInfo userId={userId} /> 
             </div>
           </div>
+
+ 
         </div>
       </section>
     </main>
