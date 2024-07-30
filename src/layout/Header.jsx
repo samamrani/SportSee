@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 import logo from '../assets/logo/logo.png';
 import '../styles/main.scss';
-// import UserSelector from '../components/UserSelector.jsx';
 
 function Header() {
   return (
@@ -31,3 +30,4 @@ function Header() {
 }
 
 export default Header;
+

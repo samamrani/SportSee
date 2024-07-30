@@ -1,10 +1,10 @@
 body, html, #root {
-  height: 100vh;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-  }
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
   
   img {
     max-width: 100%;
@@ -35,3 +35,4 @@ body, html, #root {
       background: none;
     }
   }
+

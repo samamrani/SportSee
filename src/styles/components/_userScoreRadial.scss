@@ -1,0 +1,53 @@
+.score-radial {
+  border-radius: 5px;
+  background: #FBFBFB;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
+   width: 258px;
+  height: 263px;
+ 
+margin-top: 10px;
+
+}
+.score-titre {
+  font-size: 15px;
+  font-weight: 500;
+
+  position: absolute;
+  top: 15%; 
+  left: 20%;
+  transform: translate(-50%, -50%);
+
+}
+
+.score-display {
+  text-align: center;
+
+
+
+}
+
+.score-chart {
+  position: relative;
+
+  
+}
+
+.score-text {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.score-span {
+  color: #74798C;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: center;
+}
+
+

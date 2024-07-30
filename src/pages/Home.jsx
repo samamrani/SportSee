@@ -4,7 +4,7 @@ import UserMainInfo from '../components/UserMainInfo';
 import UserActivity from '../components/UserActivity'; 
 import AverageSession from '../components/UserAverageSession';
 import UserPerformanceRadar from '../components/UserPerformanceRadar';
-
+import UserScoreRadial from '../components/UserScoreRadial';
 import '../styles/main.scss';
 
 
@@ -34,7 +34,7 @@ function Home() {
               <div className='home-content'>
                 <div><AverageSession userId={userId} /></div>
                 <div><UserPerformanceRadar userId={userId} /></div>  
-                <div></div>
+                <div><UserScoreRadial userId={userId} /></div>
               </div>   
             </div>
 
