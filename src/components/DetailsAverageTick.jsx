@@ -20,7 +20,7 @@ const DetailsAverageTick = ({ x, y, payload }) => {
   
   return (
     <text x={x}
-          y={y + 15} 
+          y={y + 100} 
           className="details-tick"
           textAnchor="middle">
       {dayLabels[payload.value] || ""}

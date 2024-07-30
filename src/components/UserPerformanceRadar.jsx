@@ -16,7 +16,6 @@ const UserPerformanceRadar = ({ userId }) => {
         const performanceData = await getUserPerformance(userId);
         console.log('Performance data:', performanceData);
 
-        // Assurez-vous que les données sont correctement transformées
         const transformedData = performanceData.data.map(item => ({
           ...item,
           kind: performanceData.kind[item.kind]

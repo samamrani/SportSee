@@ -46,7 +46,7 @@ const AverageSessions = ({ userId }) => {
 
 return ( 
   <div className='responsive-container'>  
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer width="100%" height={100}>
       <h1 className='titre-session'>Durée moyenne des <br /> sessions</h1>
       <LineChart data={data}>
         {/* <CartesianGrid strokeDasharray="3 3" /> */}
