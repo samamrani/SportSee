@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import getUserActivity from '../utils/getUserActivity'; 
-import DetailsActivityTooltip from './DetailsActivityTooltip'; 
+import getActivityApi from '../services/getActivityApi';
+import DetailsActivityTooltip from './DetailsActivityTooltip';
 import icon from '../assets/images/Oval.png';
 import iconCopy from '../assets/images/Oval Copy.png';
 import '../styles/main.scss';
 
 /**
- * Composant pour afficher l'activité quotidienne de l'utilisateur sous forme de graphique à barres.
+ * Composant qui affiche l'activité quotidienne d'un utilisateur sous forme de graphique à barres.
  *
- * Ce composant récupère les données d'activité pour un utilisateur spécifique et les affiche en utilisant
- * un graphique à barres. Les barres représentent le poids (kg) et les calories brûlées (kCal) avec des
- * couleurs distinctes. Un tooltip personnalisé affiche des détails supplémentaires lors du survol des barres.
+ * Ce composant utilise les données récupérées via une API pour afficher un graphique avec deux types de données :
+ * le poids (en kg) et les calories brûlées (en kCal). Les données sont affichées sur un graphique à barres
+ * avec deux axes y pour représenter ces deux types de données.
  *
  * @param {Object} props - Les propriétés du composant.
- * @param {number} props.userId - L'identifiant de l'utilisateur pour lequel les données d'activité sont récupérées.
- * @returns {JSX.Element} - Un élément JSX contenant le graphique à barres et les icônes associées.
+ * @param {number} props.userId - L'identifiant de l'utilisateur dont les données d'activité doivent être récupérées.
+ *
+ * @returns {JSX.Element} Le rendu du composant.
  */
 const UserActivity = ({ userId }) => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        /**
+         * Fonction asynchrone pour récupérer les données d'activité de l'utilisateur.
+         * Les données sont transformées pour ajouter un champ num utilisé pour l'affichage
+         * sur l'axe des X du graphique.
+         */
         const fetchData = async () => {
             try {
-                const activityData = await getUserActivity(userId);
+                console.log('Fetching data for user:', userId);
+                const activityData = await getActivityApi(userId);
                 console.log('Activity data:', activityData);
                 
                 const transformedData = activityData.map((item, index) => ({
@@ -34,8 +41,8 @@ const UserActivity = ({ userId }) => {
 
                 setData(transformedData);
             } catch (error) {
-                setError('Failed to fetch activity data');
-                console.error(error);
+                setError('Échec de la récupération des données d\'activité');
+                console.error('Detailed error:', error);
             }
         };
 
@@ -44,6 +51,10 @@ const UserActivity = ({ userId }) => {
 
     if (error) {
         return <div>{error}</div>;
+    }
+
+    if (data.length === 0) {
+        return <div>Aucune donnée disponible</div>;
     }
 
     return (
