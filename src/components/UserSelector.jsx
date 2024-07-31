@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UserMainInfo from './UserMainInfo';
-import Home from '../pages/Home.jsx';
+
 
 import '../styles/main.scss';
 
@@ -43,8 +42,7 @@ const UserSelector = () => {
           ))}
         </div>
       )}
-     {/* {selectedUserId && <UserMainInfo userId={selectedUserId} />}
-      {selectedUserId && <Home userId={selectedUserId} />}  */}
+   
     </div>
   );
 };

@@ -7,8 +7,7 @@ import { USER_MAIN_DATA } from '../services/apiService';
  * @returns {Object|undefined} - Retourne l'objet de données de l'utilisateur si trouvé, sinon `undefined`.
  */
 const getUserMainInfo = (id) => {
-  return USER_MAIN_DATA.find(user => user.id === id);
+  return USER_MAIN_DATA.find(user => user.id === id) || null;
 }
 
 export default getUserMainInfo;
- 

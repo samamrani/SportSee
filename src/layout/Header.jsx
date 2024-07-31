@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
 import logo from '../assets/logo/logo.png';
+
 import '../styles/main.scss';
 
 function Header() {
@@ -14,7 +15,7 @@ function Header() {
               <Link to="/">Accueil</Link>
             </li>
             <li>
-            <Link to="/">Profile</Link>
+            <Link to="/profile"> Profile</Link>
             </li>
             <li>
               <Link to="/reglages">Réglages</Link>  
