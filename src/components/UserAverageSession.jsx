@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import getAverageSessions from '../utils/getAverageSessions'; 
+import getAverageSessionsApi from '../services/getAverageSessionsApi'; 
 import DetailsAverageTooltip from './DetailsAverageTooltip'; 
 import DetailsAverageTick from './DetailsAverageTick'; 
 import '../styles/main.scss';
@@ -24,25 +24,30 @@ const AverageSessions = ({ userId }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const sessionData = await getAverageSessions(userId);
+        const sessionData = await getAverageSessionsApi(userId);
         console.log('Fetched sessionData:', sessionData); 
 
-        if (sessionData && sessionData.sessions) {
-          setData(sessionData.sessions); 
-        }
-        
-      } catch (error) {
-        setError('Failed to fetch session data');
-        console.error('Fetch error:', error); 
-      }
-    };
-  
+        const transformedData = sessionData.map((item, index) => ({
+          ...item,
+          num: index + 1
+      }));
+
+      setData(transformedData);
+  } catch (error) {
+      setError('Échec de la récupération des données d\'activité');
+      console.error('Detailed error:', error);
+  }
+};
     fetchData();
   }, [userId]);
 
   if (error) {
     return <div>{error}</div>;
   }
+
+  if (data.length === 0) {
+    return <div>Aucune donnée disponible</div>;
+}
 
 return ( 
   <div className='responsive-container'>  

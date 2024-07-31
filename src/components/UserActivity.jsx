@@ -30,7 +30,7 @@ const UserActivity = ({ userId }) => {
          */
         const fetchData = async () => {
             try {
-                console.log('Fetching data for user:', userId);
+                // console.log('Fetching data for user:', userId);
                 const activityData = await getActivityApi(userId);
                 console.log('Activity data:', activityData);
                 
