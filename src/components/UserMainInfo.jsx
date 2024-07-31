@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { USER_MAIN_DATA } from '../services/apiService'; 
+import getUserApi from '../services/getUserApi';
 import calorieIcon from '../assets/icon/calories-icon.png';
 import carbsIcon from '../assets/icon/carbs-icon.png';
 import lipidIcon from '../assets/icon/fat-icon.png';
@@ -30,37 +30,59 @@ const keyDataMapping = [
 const UserMainInfo = ({ userId }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('Fetching data for userId:', userId);
-    const userData = USER_MAIN_DATA.find(user => user.id === parseInt(userId, 10));
-    console.log('Fetched userData:', userData);
-    if (userData) {
-      setUserInfo(userData);
-      setError(null); // Réinitialiser l'erreur s'il y a des données
-    } else {
-      setError('Utilisateur non trouvé.');
-    }
+    /**
+     * Récupère les données de l'utilisateur et met à jour l'état du composant.
+     *
+     * Cette fonction appelle `getUserApi` pour obtenir les données de l'utilisateur
+     * et met à jour les états `userInfo`, `error` et `loading` en conséquence.
+     *
+     * @async
+     * @function fetchUserData
+     */
+    const fetchUserData = async () => {
+      try {
+        setLoading(true);
+        const data = await getUserApi(userId);
+        setUserInfo(data);
+        setError(null);
+      } catch (err) {
+        setError('Erreur lors de la récupération des données.');
+        setUserInfo(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
   }, [userId]);
+
+  if (loading) {
+    return <div>Chargement...</div>;
+  }
 
   if (error) {
     return <div>{error}</div>;
   }
-  
-  if (!userInfo) {
-    return <div>Chargement...</div>;
+
+  if (!userInfo || !userInfo.keyData) {
+    return <div>Aucune donnée disponible.</div>;
   }
 
   return (
-    <div>
+    <div className="user-main-info">
       <ul className="performance-list">
         {keyDataMapping.map(item => (
-          <li key={item.key}>
+          <li key={item.key} className="performance-item">
             <div className="icon-container">
-              <img src={item.icon} alt={item.label} />
+              <img src={item.icon} alt={item.label} className="icon" />
             </div>
             <div className="data-container">
-              <span className="value">{userInfo.keyData[item.key]} {item.unit}</span>
+              <span className="value">
+                {userInfo.keyData[item.key] !== undefined ? userInfo.keyData[item.key] : 'N/A'} {item.unit}
+              </span>
               <span className="label">{item.label}</span>
             </div>
           </li>
