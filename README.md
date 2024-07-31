@@ -6,12 +6,16 @@
     Recharts: Bibliothèques pour la création de graphiques.
     Fetch : Pour la gestion des appels HTTP.
     Sass : Pour le stylisme avancé
-#### Installation et Configuration
-    Installez les dépendances : yarn insatll
-    Démarrez le serveur de développement : yarn start
-    L'application sera accessible à http://localhost:3000.
-##### Utilisation
-    Accédez à la page Profil 
-    avec les graphiques
 
 
+#### Documentation pour le Démarrage de l'Application
+Introduction
+Cette application est constituée de deux parties principales : le backend (serveur) et le frontend (client). Pour que l'application fonctionne correctement, le backend doit être démarré avant le frontend
+1- Démarrer le Backend: Le backend fournit les API nécessaires pour que le frontend puisse récupérer les données et les afficher
+* installez les dépendances: yarn insatll
+* Démarrez le serveur backend : yarn start
+Le serveur généralement sur http://localhost:3000 
+2- Démarrer le frontend: Le frontend dépend du backend pour obtenir les données via les API.
+* installez les dépendances: yarn insatll
+* Démarrez le frontend : yarn start
+Le frontend devrait maintenant être accessible à http://localhost:3001
