@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RadialBarChart, RadialBar, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
-import getUserMainInfo from '../utils/getUserMainInfo';
-import getUserPerformance from '../utils/getUserPerformance';
+import getUserApi from '../services/getUserApi';
+import getUserPerformance from '../services/getPerformanceApi';
 
 /**
  * Composant pour afficher le score utilisateur sous forme de graphique radial.
@@ -21,7 +21,7 @@ const UserScoreRadial = ({ userId }) => {
     const fetchData = async () => {
       try {
         // Récupérer les données principales de l'utilisateur
-        const userData = await getUserMainInfo(userId);
+        const userData = await getUserApi(userId);
         if (userData) {
           setTodayScore(userData.todayScore || userData.score);
         } else {

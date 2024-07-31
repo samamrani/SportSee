@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
-import getUserPerformance from '../utils/getUserPerformance';
+import getPerformanceApi from '../services/getPerformanceApi';
 import '../styles/main.scss';
 
-/**
- * Composant affichant les performances de l'utilisateur sous forme de graphique radar.
- *
- * @param {Object} props - Les propriétés du composant.
- * @param {number} props.userId - Identifiant unique de l'utilisateur pour lequel afficher les performances.
- *
- * @returns {JSX.Element} Le composant affichant le graphique radar des performances utilisateur.
- */
+
+
 
 const UserPerformanceRadar = ({ userId }) => {
   const [data, setData] = useState([]);
@@ -19,25 +13,31 @@ const UserPerformanceRadar = ({ userId }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-         // Récupérer les données de performance de l'utilisateur
-        const performanceData = await getUserPerformance(userId);
+        const performanceData = await getPerformanceApi(userId);
         console.log('Performance data:', performanceData);
-
-         // Transformer les données en ajoutant les labels des types de performance
-        const transformedData = performanceData.data.map(item => ({
+  
+      
+        // if (!performanceData || !performanceData.data || !performanceData.data.data || !performanceData.data.kind) {
+        //   throw new Error('Les données de performance sont manquantes ou mal formées');
+        // }
+  
+  
+        const transformedData = performanceData.data.data.map(item => ({
           ...item,
-          kind: performanceData.kind[item.kind]
+          kind: performanceData.data.kind[item.kind] || 'Inconnu'
         }));
-
+  
         setData(transformedData);
       } catch (error) {
-        setError('Failed to fetch performance data');
-        console.error('Fetch error:', error);
+        setError('Échec de la récupération des données de performance');
+        console.error('Erreur de récupération:', error);
       }
     };
-
+  
     fetchData();
   }, [userId]);
+  
+   
 
   if (error) {
     return <div>{error}</div>;
