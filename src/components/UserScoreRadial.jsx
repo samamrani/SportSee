@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { RadialBarChart, RadialBar, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
-import getUserApi from '../services/getUserApi';
-import getUserPerformance from '../services/getPerformanceApi';
+import useUserScore from '../hooks/useUserScore';
+import '../styles/main.scss';
 
 /**
  * Composant pour afficher le score utilisateur sous forme de graphique radial.
@@ -11,34 +11,12 @@ import getUserPerformance from '../services/getPerformanceApi';
  *
  * @returns {JSX.Element} Le composant affichant le score radial de l'utilisateur.
  */
-
-
 const UserScoreRadial = ({ userId }) => {
-  const [todayScore, setTodayScore] = useState(null);
-  const [error, setError] = useState(null);
+  const { todayScore, error, loading } = useUserScore(userId);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Récupérer les données principales de l'utilisateur
-        const userData = await getUserApi(userId);
-        if (userData) {
-          setTodayScore(userData.todayScore || userData.score);
-        } else {
-          throw new Error('User data not found');
-        }
-
-        // Récupérer les données de performance de l'utilisateur
-      await getUserPerformance(userId);
-
-      } catch (error) {
-        setError('Failed to fetch data');
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [userId]);
+  if (loading) {
+    return <div>Chargement...</div>;
+  }
 
   if (error) {
     return <div>{error}</div>;
@@ -46,36 +24,37 @@ const UserScoreRadial = ({ userId }) => {
 
   return (
     <div className="score-radial">
-   
       {todayScore !== null && (
         <div className="score-display">
           <div className="score-chart">
- 
             <ResponsiveContainer width="100%" height={260}>
-              <RadialBarChart 
-                innerRadius="60%" // Rayon interne du graphique radial
-                outerRadius="90%" // Rayon externe du graphique radial
-                startAngle={180} // Angle de départ du graphique radial
-                endAngle={-270} // Angle de fin du graphique radial
-                data={[{ name: 'Score', value: Math.round(todayScore * 100) }]} // Données à afficher dans le graphique
+              <RadialBarChart
+                innerRadius="60%"
+                outerRadius="90%"
+                startAngle={180}
+                endAngle={-270}
+                data={[{ name: 'Score', value: Math.round(todayScore * 100) }]}
               >
-                  <RadialBar 
-                     minAngle={15} // Angle minimum pour les barres radiales
-                     clockWise // Direction du graphique (horaire)
-                     dataKey="value" // Clé des données à afficher dans la barre radiale
-                     fill="#E60000" // Couleur de la barre radiale
-                     cornerRadius={100} // Arrondi des coins de la barre radiale   
-                  />
-                <PolarAngleAxis type="number" domain={[0, 100]}  tick={false}/>
-                <PolarRadiusAxis tick={false}/>
-  
-              </RadialBarChart> 
+                <RadialBar
+                  minAngle={15}
+                  clockWise
+                  dataKey="value"
+                  fill="#E60000"
+                  cornerRadius={100}
+                />
+                <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
+                <PolarRadiusAxis tick={false} />
+              </RadialBarChart>
             </ResponsiveContainer>
-            <div  className='score-titre'> <h3>Score</h3> </div>
-            <h3 className="score-text">{Math.round(todayScore * 100)}% <br /> <span className='score-span'> de votre <br /> objectif </span></h3>
+            <div className='score-titre'>
+              <h3>Score</h3>
+            </div>
+            <h3 className="score-text">
+              {Math.round(todayScore * 100)}% <br />
+              <span className='score-span'> de votre <br /> objectif </span>
+            </h3>
           </div>
-        </div> 
-    
+        </div>
       )}
     </div>
   );
