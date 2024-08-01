@@ -12,6 +12,12 @@ const icons = [
   { src: logo, alt: 'Biking Icon' },
 ];
 
+/**
+ * Composant de footer affichant une liste d'icônes verticalement sur le côté gauche de la page et un message de copyright.
+ * 
+ * @returns  @returns {JSX.Element} Un élément JSX représentant le pied de page positionné verticalement à gauche de la page
+ */
+
 function Footer() {
   return (
     <footer>

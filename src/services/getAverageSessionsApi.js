@@ -11,7 +11,7 @@ async function getAverageSessionsApi(userId) {
     throw new Error('Failed to fetch average-sessions data');
   }
   const data = await response.json();
-  return data.data.sessions; 
+  return data.data.sessions; // Retourne directement le tableau de sessions
 }
 
 export default getAverageSessionsApi;

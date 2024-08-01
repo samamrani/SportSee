@@ -10,7 +10,7 @@ import '../styles/main.scss';
  *
  * Ce composant récupère les données de session pour un utilisateur spécifique et les affiche en utilisant
  * un graphique linéaire. La ligne représente la durée des sessions, avec des détails supplémentaires affichés
- * dans un tooltip personnalisé lors du survol de la ligne.
+ * dans un tooltip personnalisé lors du survol du lors du clic.
  *
  * @param {Object} props - Les propriétés du composant.
  * @param {number} props.userId - L'identifiant de l'utilisateur pour lequel les données de session sont récupérées.

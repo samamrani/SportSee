@@ -3,8 +3,14 @@ import { RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Responsi
 import getPerformanceApi from '../services/getPerformanceApi';
 import '../styles/main.scss';
 
-
-
+/**
+ * Composant qui affiche la performance d'un utilisateur sous forme de radar.
+ * 
+ * @param {Object} props - Les propriétés passées au composant.
+ * @param {number} props.userId - L'ID de l'utilisateur pour lequel afficher les performances.
+ * 
+ * @returns {JSX.Element} Le rendu du composant, qui affiche un graphique radar des performances de l'utilisateur.
+ */
 
 const UserPerformanceRadar = ({ userId }) => {
   const [data, setData] = useState([]);
@@ -14,13 +20,7 @@ const UserPerformanceRadar = ({ userId }) => {
     const fetchData = async () => {
       try {
         const performanceData = await getPerformanceApi(userId);
-        console.log('Performance data:', performanceData);
-  
-      
-        // if (!performanceData || !performanceData.data || !performanceData.data.data || !performanceData.data.kind) {
-        //   throw new Error('Les données de performance sont manquantes ou mal formées');
-        // }
-  
+        console.log('Performance data:', performanceData)
   
         const transformedData = performanceData.data.data.map(item => ({
           ...item,
@@ -42,7 +42,6 @@ const UserPerformanceRadar = ({ userId }) => {
   if (error) {
     return <div>{error}</div>;
   }
-
 
   return (
     

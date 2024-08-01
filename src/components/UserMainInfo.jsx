@@ -6,10 +6,6 @@ import lipidIcon from '../assets/icon/fat-icon.png';
 import proteinIcon from '../assets/icon/protein-icon.png';
 import '../styles/main.scss';
 
-/**
- * Mappage des clés de données avec leurs labels et icônes.
- * @type {Array<Object>}
- */
 const keyDataMapping = [
   { key: 'calorieCount', label: 'Calories', icon: calorieIcon, unit: 'kCal' },
   { key: 'proteinCount', label: 'Protéines', icon: proteinIcon, unit: 'g' },
@@ -33,15 +29,7 @@ const UserMainInfo = ({ userId }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    /**
-     * Récupère les données de l'utilisateur et met à jour l'état du composant.
-     *
-     * Cette fonction appelle `getUserApi` pour obtenir les données de l'utilisateur
-     * et met à jour les états `userInfo`, `error` et `loading` en conséquence.
-     *
-     * @async
-     * @function fetchUserData
-     */
+  
     const fetchUserData = async () => {
       try {
         setLoading(true);
@@ -55,7 +43,7 @@ const UserMainInfo = ({ userId }) => {
         setLoading(false);
       }
     };
-
+ 
     fetchUserData();
   }, [userId]);
 

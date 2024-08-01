@@ -18,7 +18,7 @@ const getUserApi = async (userId) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const result = await response.json();
-    return result.data; 
+    return result.data; // Retourne directement l'objet utilisateur
   } catch (error) {
     console.error('Error in getUserApi:', error);
     throw error;

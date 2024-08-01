@@ -4,7 +4,7 @@ import '../styles/main.scss';
 /**
  * Composant de tooltip personnalisé pour afficher des informations sur une activité.
  *
- * Ce composant affiche des informations contextuelles dans un tooltip lorsque la souris est sur un élément du graphique.
+ * Ce composant affiche des informations dans un tooltip lorsque la souris est sur un élément du graphique.
  * Il gère les unités pour différents types de données (poids, calories, etc.).
  *
  * @param {Object} props - Les propriétés du composant.

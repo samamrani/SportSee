@@ -9,21 +9,15 @@ import '../styles/main.scss';
 import { useParams } from 'react-router-dom';
 
 /**
- * Composant pour afficher la page d'accueil avec les informations de l'utilisateur.
- *
- * Ce composant récupère les données de l'utilisateur via le hook `useUserData` et affiche
- * diverses informations et graphiques en fonction de ces données. Il affiche un message de
- * bienvenue personnalisé et des informations sur les activités, les sessions, la performance
- * et le score de l'utilisateur.
- *
- * @param {Object} props - Les propriétés du composant.
- * @param {number|null} [props.userId=null] - L'identifiant de l'utilisateur à afficher.
- * Si `null`, l'identifiant sera extrait des paramètres de l'URL.
- *
- * @returns {JSX.Element} - Un élément JSX contenant les informations et graphiques de l'utilisateur.
+ * Composant principal de la page d'accueil affichant les informations et les statistiques de l'utilisateur.
+ * 
+ @param {Object} props - Les propriétés du composant.
+ * @param {number|null} [props.userId=null] - L'identifiant de l'utilisateur. Si non fourni, il est récupéré depuis les paramètres d'URL.
+ * @returns {JSX.Element} Un élément JSX représentant la page d'accueil avec les informations de l'utilisateur et les graphiques.
  */
+
 function Home({ userId: propUserId = null }) {
-  const { id } = useParams(); // Récupère l'ID utilisateur depuis les paramètres de l'URL
+  const { id } = useParams();
   const userId = propUserId !== null ? propUserId : parseInt(id, 10);
   const { data, loading, error } = useUserData(userId);
 

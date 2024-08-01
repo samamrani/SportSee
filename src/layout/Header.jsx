@@ -4,6 +4,12 @@ import logo from '../assets/logo/logo.png';
 
 import '../styles/main.scss';
 
+/**
+ * Composant d'en-tête affichant le logo et la navigation horizontale.
+ * 
+ * @returns {JSX.Element} Un élément JSX représentant l'en-tête de la page avec le logo et la navigation.
+ */
+
 function Header() {
   return (
     <header>

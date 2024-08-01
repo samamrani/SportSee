@@ -7,14 +7,11 @@ import getUserApi from '../services/getUserApi';
  * Ce hook gère l'état de récupération des données utilisateur, y compris
  * le chargement, les erreurs, et les données une fois récupérées.
  *
- * @param {number|string} userId - L'identifiant de l'utilisateur pour lequel les données sont récupérées.
+ * @param {number} userId  L'identifiant de l'utilisateur pour lequel les données sont récupérées.
  * @returns {Object} Un objet contenant les états suivants :
  * @returns {Object|null} data - Les données de l'utilisateur si la récupération a réussi, sinon `null`.
  * @returns {boolean} loading - Indique si les données sont en cours de chargement.
  * @returns {string|null} error - Message d'erreur s'il y en a eu une lors de la récupération des données, sinon `null`.
- *
- * @example
- * const { data, loading, error } = useUserData(1);
  */
 const useUserData = (userId) => {
   const [data, setData] = useState(null);
@@ -22,16 +19,7 @@ const useUserData = (userId) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    /**
-     * Fonction asynchrone pour récupérer les données utilisateur depuis l'API.
-     *
-     * Cette fonction appelle `getUserApi` avec l'identifiant utilisateur,
-     * puis met à jour les états `data`, `loading` et `error` en fonction des résultats.
-     *
-     * @async
-     * @function fetchUserData
-     * @returns {Promise<void>}
-     */
+  
     const fetchUserData = async () => {
       try {
         setLoading(true);

@@ -23,11 +23,7 @@ const UserActivity = ({ userId }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        /**
-         * Fonction asynchrone pour récupérer les données d'activité de l'utilisateur.
-         * Les données sont transformées pour ajouter un champ num utilisé pour l'affichage
-         * sur l'axe des X du graphique.
-         */
+   
         const fetchData = async () => {
             try {
                 // console.log('Fetching data for user:', userId);
