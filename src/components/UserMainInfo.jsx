@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import getUserApi from '../services/getUserApi';
+import React from 'react';
+import useUserData from '../hooks/useUserData';
 import calorieIcon from '../assets/icon/calories-icon.png';
 import carbsIcon from '../assets/icon/carbs-icon.png';
 import lipidIcon from '../assets/icon/fat-icon.png';
@@ -19,33 +19,15 @@ const keyDataMapping = [
  * Ce composant récupère et affiche les informations principales de l'utilisateur
  * telles que les calories, protéines, glucides et lipides, avec des icônes correspondantes.
  *
+ * Le composant utilise le hook personnalisé `useUserData` pour gérer la récupération
+ * des données de l'utilisateur et l'état de chargement et d'erreur.
+ * 
  * @param {Object} props - Les propriétés du composant.
  * @param {number} props.userId - L'identifiant de l'utilisateur pour lequel les données sont récupérées.
  * @returns {JSX.Element} - Un élément JSX contenant les informations principales de l'utilisateur.
  */
 const UserMainInfo = ({ userId }) => {
-  const [userInfo, setUserInfo] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-  
-    const fetchUserData = async () => {
-      try {
-        setLoading(true);
-        const data = await getUserApi(userId);
-        setUserInfo(data);
-        setError(null);
-      } catch (err) {
-        setError('Erreur lors de la récupération des données.');
-        setUserInfo(null);
-      } finally {
-        setLoading(false);
-      }
-    };
- 
-    fetchUserData();
-  }, [userId]);
+  const { data: userInfo, loading, error } = useUserData(userId);
 
   if (loading) {
     return <div>Chargement...</div>;

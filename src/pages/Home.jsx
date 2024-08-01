@@ -1,5 +1,5 @@
 import React from 'react';
-import useUserData from '../hooks/userUserData';
+import useUserData from '../hooks/useUserData';
 import UserMainInfo from '../components/UserMainInfo'; 
 import UserActivity from '../components/UserActivity'; 
 import AverageSession from '../components/UserAverageSession';
