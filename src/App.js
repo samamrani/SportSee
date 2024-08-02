@@ -15,8 +15,7 @@ function App() {
   return (
     <Router>
       <MainLayout>
-        <Routes>
-       
+        <Routes>   
           <Route path="/" element={<Home userId={12} />} />   {/* chemin racine (/). */}
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/user/:id" element={<Home />} />

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import getUserApi from '../services/getUserApi';
-import getUserPerformance from '../services/getPerformanceApi';
 
 /**
  * Hook personnalisé pour récupérer le score utilisateur.

@@ -55,21 +55,21 @@
 /* Media Queries pour les petits écrans */
 @media (max-width: 768px) {
   .footer {
-    width: 60px; /* Réduit la largeur pour les petits écrans */
+    width: 60px; 
   }
 
   .icon-img-logo {
-    width: 48px; /* Réduit la taille des icônes */
+    width: 48px; 
     height: 48px;
   }
 
   .copyright {
-    font-size: 10px; /* Réduit la taille du texte */
+    font-size: 10px; 
   }
 }
 
 @media (max-width: 480px) {
   .footer {
-    width: 50px; /* Ajuste la largeur pour les très petits écrans */
+    width: 50px; 
   }
 }
