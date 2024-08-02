@@ -24,9 +24,7 @@ const useUserScore = (userId) => {
         } else {
           throw new Error('User data not found');
         }
-
-        // Récupérer les données de performance de l'utilisateur
-        await getUserPerformance(userId);
+        
       } catch (error) {
         setError('Échec de la récupération des données');
         console.error(error);

@@ -45,19 +45,22 @@ const UserPerformanceRadar = ({ userId }) => {
 
   return (
     
-    <div className='objectives-radar'>
-      <ResponsiveContainer width="100%" height={260}>
-        <RadarChart outerRadius="60%" data={data}>
-        <PolarGrid stroke="#ddd" strokeWidth={1} />
-          <PolarAngleAxis dataKey="kind"  tick={{ fontSize: 12, fill: '#fff' }} />
-          <PolarRadiusAxis
-            axisLine={false} 
-            tick={false} 
-            tickLine={false}/>
-          <Radar name="Performance" dataKey="value" stroke="#E60000" fill="#E60000" />
-        </RadarChart>
-      </ResponsiveContainer>
+    <div className='performance'>
+       <div className='performance-container'>
+    <ResponsiveContainer width="100%" height="100%">
+      <RadarChart outerRadius="60%" data={data}>
+        <PolarGrid stroke="#ddd" strokeWidth={2} />
+        <PolarAngleAxis dataKey="kind" tick={{ fontSize: 12, fill: '#fff' }} />
+        <PolarRadiusAxis
+          axisLine={false} 
+          tick={false} 
+          tickLine={false}
+        />
+        <Radar name="Performance" dataKey="value" stroke="#E60000" fill="#E60000" />
+      </RadarChart>
+    </ResponsiveContainer>
     </div>
+  </div>
   );
 };
 

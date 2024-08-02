@@ -19,10 +19,13 @@ const DetailsAverageTick = ({ x, y, payload }) => {
   console.log(payload.value); 
   
   return (
-    <text x={x}
-          y={y + 100} 
-          className="details-tick"
-          textAnchor="middle">
+    <text 
+      x={x}
+      y={y + 20} // Ajustez l'espacement vertical si nécessaire
+      className="details-tick"
+      textAnchor="middle" // Centre le texte horizontalement
+      dominantBaseline="middle" // Centre le texte verticalement
+    >
       {dayLabels[payload.value] || ""}
     </text>
   );

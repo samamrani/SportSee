@@ -55,10 +55,8 @@ const UserActivity = ({ userId }) => {
 
     return (
         <div className='activity'>
-            <div className='activity-container'>
-                <div className='activitu-titl'>
-                    <h1>Activité quotidienne</h1>
-                </div>
+            <div className='activity-container'> 
+                <h1>Activité quotidienne</h1>
                 <div className='activity-icon'>
                     <span><img src={icon} alt="icon" className='logo'/> Poids (kg) </span>  
                     <span><img src={iconCopy} alt="icon" className='logo'/> Calories brûlées (kCal) </span>  
@@ -66,7 +64,7 @@ const UserActivity = ({ userId }) => {
             </div>
 
             <div>
-                <ResponsiveContainer width="100%" height={200}>
+                <ResponsiveContainer width="100%" height={320}>
                     <BarChart data={data} barGap={8} barCategoryGap={1}>
                         <CartesianGrid vertical={false} strokeDasharray="1 1" />
                         <XAxis dataKey="num" tickLine={false} tick={{ fontSize: 14 }} dy={15} />

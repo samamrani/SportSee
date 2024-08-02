@@ -48,28 +48,28 @@ const AverageSessions = ({ userId }) => {
   if (data.length === 0) {
     return <div>Aucune donnée disponible</div>;
 }
-
+ 
 return ( 
-  <div className='responsive-container'>  
-    <ResponsiveContainer width="100%" height={100}>
-      <h1 className='titre-session'>Durée moyenne des <br /> sessions</h1>
+ 
+  <div className='average'>  
+  <h1 className='titre-session'>Durée moyenne des <br /> sessions</h1>
+  <div className='average-container'>
+    <ResponsiveContainer width="100%" height={200}>
       <LineChart data={data}>
-        {/* <CartesianGrid strokeDasharray="3 3" /> */}
-        <XAxis dataKey="day" tick={<DetailsAverageTick />} axisLine={false}  tickLine={false}/>
-        {/* <YAxis /> */}
+        <XAxis dataKey="day" tick={<DetailsAverageTick />} axisLine={false} tickLine={false} interval={0}/>
         <Tooltip content={<DetailsAverageTooltip />} />
         <Line 
-        
-        type="monotone" 
-        dataKey="sessionLength" 
-        stroke="#FFFFFF" // Couleur blanche pour la courbe
-        strokeWidth={2}  // Épaisseur de la ligne
-        dot={false}      // Masquer les points sur la courbe
-        
+          type="monotone" 
+          dataKey="sessionLength" 
+          stroke="#FFF" // Couleur blanche pour la courbe
+          strokeWidth={2}  // Épaisseur de la ligne
+          dot={false}      // Masquer les points sur la courbe
         />
       </LineChart>
     </ResponsiveContainer>
   </div>
+</div>
+
 );
 };
 

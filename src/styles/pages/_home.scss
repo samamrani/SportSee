@@ -1,46 +1,135 @@
 .home-container {
-  margin: 4rem 10rem;
-  width: 1440px;
+  margin: 4rem auto;
+  max-width: 1440px;
  
-  padding: 0 6rem; 
-  display: flex;
-  flex-direction: column;
- 
-  width: 1126px;
-  height: 779px;
-  top: 159px;
-  left: 224px;
-  gap: 0px;
-  opacity: 0px;
-  
-
-
-  .red-text {
-    color: red;
-  }
-.text-home{
-  color: #000;
-  font-family: Roboto;
-  font-size: 48px;
-  font-weight: 500;
-
-} 
+}
 
 .home-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 400px; 
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+    "home-activity-content user-main-info"
+    "home-activity-content user-main-info";
+  gap: 50px;
+}
 
+.text-home{
+
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  
+}
+
+.red-text{
+  color: red;
+}
+.home-activity-content {
+  grid-area: home-activity-content;
+  display: grid;
+  grid-template-rows: auto 1fr; 
   gap: 40px;
-  margin-top: 30px;
- 
 }
 
-.home-activity {
-  display: flex;
-  margin-top: 2rem; 
+.home-chart {
+ display: flex;
+ justify-content: space-between; 
 }
 
-.home-main {
- 
-  margin-top: 1rem; 
+
+
+.user-main-info {
+  grid-area: user-main-info;
 }
+
+@media (max-width: 1024px) {
+  .home-container {
+    margin: 4rem ;
+   
+   
+  }
+  .home-content {
+    grid-template-columns: 1fr; 
+    grid-template-areas: 
+      "home-activity-content"
+      "user-main-info";
+    gap: 30px; 
+  }
+
+  .home-activity-content {
+    grid-template-rows: auto 1fr;
+    gap: 30px; 
+  }
+
+  .home-chart {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 30px;  
+  }
+
+  .text-home {
+    font-size: 36px; 
+  }
+}
+
+
+@media (max-width: 768px) {
+  .home-container {
+    margin: 3rem ;
+  }
+  .home-content {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "home-activity-content"
+      "user-main-info";
+    gap: 20px; 
+  }
+
+  .home-activity-content {
+    grid-template-rows: auto 1fr;
+    gap: 20px; 
+  }
+
+  .home-chart {
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 15px; 
+  }
+
+  .text-home {
+    font-size: 28px; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .home-container {
+    margin: 2rem ;
+   
+   
+  }
+  .home-content {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "home-activity-content"
+      "user-main-info";
+    gap: 10px; 
+  }
+
+  .home-activity-content {
+    grid-template-rows: auto 1fr;
+    gap: 10px; 
+  }
+
+  .home-chart {
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 10px; 
+  }
+
+  .text-home {
+    font-size: 24px; 
+  }
 }

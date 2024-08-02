@@ -32,18 +32,16 @@ function Home({ userId: propUserId = null }) {
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👋</p>
           <div className='home-content'>
             <div className='home-activity-content'>
-              <div className='home-activity'>
-                <UserActivity userId={userId} />
-              </div>
-              <div className='home-content'>
-                <div><AverageSession userId={userId} /></div>
-                <div><UserPerformanceRadar userId={userId} /></div>  
-                <div><UserScoreRadial userId={userId} /></div>
+                <UserActivity userId={userId} /> 
+              <div className='home-chart'>
+                <AverageSession userId={userId} />
+                <UserPerformanceRadar userId={userId} />
+                <UserScoreRadial userId={userId} />
               </div>   
             </div>
-            <div className='home-main'>
+      
               <UserMainInfo userId={userId} /> 
-            </div>
+          
           </div>
         </div>
       </section>

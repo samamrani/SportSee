@@ -42,7 +42,7 @@ const UserMainInfo = ({ userId }) => {
   }
 
   return (
-    <div className="user-main-info">
+    
       <ul className="performance-list">
         {keyDataMapping.map(item => (
           <li key={item.key} className="performance-item">
@@ -58,7 +58,7 @@ const UserMainInfo = ({ userId }) => {
           </li>
         ))}
       </ul>
-    </div>
+  
   );
 };
 

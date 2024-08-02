@@ -23,16 +23,16 @@ const UserScoreRadial = ({ userId }) => {
   }
 
   return (
-    <div className="score-radial">
+    <div className="score">
       {todayScore !== null && (
         <div className="score-display">
-          <div className="score-chart">
-            <ResponsiveContainer width="100%" height={260}>
+          <div className="score-container">
+            <ResponsiveContainer width="100%" height="100%">
               <RadialBarChart
                 innerRadius="60%"
                 outerRadius="90%"
                 startAngle={180}
-                endAngle={-270}
+                endAngle={-200}
                 data={[{ name: 'Score', value: Math.round(todayScore * 100) }]}
               >
                 <RadialBar
