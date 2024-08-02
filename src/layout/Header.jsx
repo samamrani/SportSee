@@ -17,17 +17,10 @@ function Header() {
         <img src={logo} alt="SportSee" className="nav_horizontal__img" />
         <nav className="nav_horizontal__nav">
           <ul className="nav_horizontal__nav__list">
-            <li>
-              <Link to="/">Accueil</Link>
-            </li>
-            <li>
-            <Link to="/profile"> Profile</Link>
-            </li>
-            <li>
-              <Link to="/reglages">Réglages</Link>  
-            </li>
-            <li>
-              <Link to="/communaute">Communauté</Link>
+            <li><Link to="/">Accueil</Link></li>
+            <li><Link to="/profile"> Profile</Link></li>
+            <li><Link to="/reglages">Réglages</Link>  </li>
+            <li><Link to="/communaute">Communauté</Link>
             </li>
           </ul>
         </nav>
