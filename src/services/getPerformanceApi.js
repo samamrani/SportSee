@@ -1,11 +1,11 @@
-// services/getPerformanceApi.js
-
 /**
  * Récupère les données de performance de l'utilisateur depuis l'API.
+ *
  * @param {number} userId - Identifiant unique de l'utilisateur.
- * @returns {Promise<Object>} - Données de performance.
- * @throws {Error} - Si la requête échoue.
+ * @returns {Promise<Object>} - Une promesse qui résout un objet contenant les données de performance de l'utilisateur.
+ * @throws {Error} - Lance une erreur si la requête échoue.
  */
+
 async function getPerformanceApi(userId) {
   try {
     const response = await fetch(`http://localhost:3000/user/${userId}/performance`); // Remplacez par l'URL de votre API

@@ -10,6 +10,7 @@
  * @returns {Promise<Array<Object>>} - Une promesse qui résout un tableau d'objets représentant les sessions d'activité.
  * @throws {Error} - Lance une erreur si la requête échoue ou si la réponse n'est pas correcte.
  */
+
 async function getActivityApi(userId) {
   const response = await fetch(`http://localhost:3000/user/${userId}/activity`);
 console.log(response)
