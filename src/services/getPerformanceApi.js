@@ -14,7 +14,7 @@ async function getPerformanceApi(userId) {
     }
     const data = await response.json();
     console.log('Données récupérées de l\'API:', data);
-    return data; // Retourne l'objet complet des performances
+    return data?.data; // Retourne l'objet complet des performances
   } catch (error) {
     console.error('Erreur lors de la récupération des données de performance:', error);
     throw error;

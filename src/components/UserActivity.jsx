@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import getActivityApi from '../services/getActivityApi';
 import DetailsActivityTooltip from './DetailsActivityTooltip';
 import icon from '../assets/images/Oval.png';
 import iconCopy from '../assets/images/Oval Copy.png';
 import '../styles/main.scss';
+import useActivityData from '../hooks/useActivityData';
 
 /**
  * Composant qui affiche l'activité quotidienne d'un utilisateur sous forme de graphique à barres.
@@ -19,31 +19,11 @@ import '../styles/main.scss';
  * @returns {JSX.Element} Le rendu du composant.
  */
 const UserActivity = ({ userId }) => {
-    const [data, setData] = useState([]);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-   
-        const fetchData = async () => {
-            try {
-                // console.log('Fetching data for user:', userId);
-                const activityData = await getActivityApi(userId);
-                console.log('Activity data:', activityData);
-                
-                const transformedData = activityData.map((item, index) => ({
-                    ...item,
-                    num: index + 1
-                }));
-
-                setData(transformedData);
-            } catch (error) {
-                setError('Échec de la récupération des données d\'activité');
-                console.error('Detailed error:', error);
+  const {data, loading, error} = useActivityData(userId)
+    
+            if(loading){
+                return <div>Chargement en cours...</div>
             }
-        };
-
-        fetchData();
-    }, [userId]);
 
     if (error) {
         return <div>{error}</div>;
@@ -52,6 +32,10 @@ const UserActivity = ({ userId }) => {
     if (data.length === 0) {
         return <div>Aucune donnée disponible</div>;
     }
+    const transformed = data.map((item, index) => ({
+        ...item,
+        num: index + 1
+    }));
 
     return (
         <div className='activity'>
@@ -65,7 +49,7 @@ const UserActivity = ({ userId }) => {
 
             <div>
                 <ResponsiveContainer width="100%" height={320}>
-                    <BarChart data={data} barGap={8} barCategoryGap={1}>
+                    <BarChart data={transformed} barGap={8} barCategoryGap={1}>
                         <CartesianGrid vertical={false} strokeDasharray="1 1" />
                         <XAxis dataKey="num" tickLine={false} tick={{ fontSize: 14 }} dy={15} />
                         <YAxis

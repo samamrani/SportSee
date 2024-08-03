@@ -20,26 +20,32 @@ import '../styles/main.scss';
 const AverageSessions = ({ userId }) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true) 
       try {
         const sessionData = await getAverageSessionsApi(userId);
         console.log('Fetched sessionData:', sessionData); 
 
-        const transformedData = sessionData.map((item, index) => ({
-          ...item,
-          num: index + 1
-      }));
-
-      setData(transformedData);
+      setData(sessionData);
   } catch (error) {
       setError('Échec de la récupération des données d\'activité');
       console.error('Detailed error:', error);
   }
+
+  finally {
+    setLoading(false);
+  }
+
 };
     fetchData();
   }, [userId]);
+
+  if(loading){
+    return <div>Chargement en cours...</div>
+}
 
   if (error) {
     return <div>{error}</div>;
@@ -49,13 +55,18 @@ const AverageSessions = ({ userId }) => {
     return <div>Aucune donnée disponible</div>;
 }
  
+const transformed = data.map((item, index) => ({
+  ...item,
+  num: index + 1
+}));
+
 return ( 
  
   <div className='average'>  
   <h1 className='titre-session'>Durée moyenne des <br /> sessions</h1>
   <div className='average-container'>
     <ResponsiveContainer width="100%" height={200}>
-      <LineChart data={data}>
+      <LineChart data={transformed}>
         <XAxis dataKey="day" tick={<DetailsAverageTick />} axisLine={false} tickLine={false} interval={0}/>
         <Tooltip content={<DetailsAverageTooltip />} />
         <Line 

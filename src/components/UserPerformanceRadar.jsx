@@ -22,11 +22,25 @@ const UserPerformanceRadar = ({ userId }) => {
     return <div>{error}</div>;
   }
 
+  if(!(data && data.data && data.kind)){
+
+    return <div>La structure des données est incorrecte</div>
+  }
+  const performanceArray = data.data; 
+  const kindMapping = data.kind; 
+
+
+    const transformed = performanceArray.map(item => ({
+      ...item,
+      kind: kindMapping[item.kind] || 'Inconnu'
+    }));
+   
+
   return (
     <div className='performance'>
       <div className='performance-container'>
         <ResponsiveContainer width="100%" height="100%">
-          <RadarChart outerRadius="60%" data={data}>
+          <RadarChart outerRadius="60%" data={transformed}>
             <PolarGrid stroke="#ddd" strokeWidth={2} />
             <PolarAngleAxis dataKey="kind" tick={{ fontSize: 12, fill: '#fff' }} />
             <PolarRadiusAxis axisLine={false} tick={false} tickLine={false} />

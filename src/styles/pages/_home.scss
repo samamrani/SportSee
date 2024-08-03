@@ -1,12 +1,13 @@
 .home-container {
   margin: 4rem auto;
   max-width: 1440px;
- 
+  padding: 0 1rem; 
+  box-sizing: border-box; 
 }
 
 .home-content {
   display: grid;
-  grid-template-columns: 1fr 400px; 
+  grid-template-columns: 1fr 300px; 
   grid-template-rows: auto 1fr;
   grid-template-areas: 
     "home-activity-content user-main-info"
@@ -14,122 +15,119 @@
   gap: 50px;
 }
 
-.text-home{
-
+.text-home {
   font-size: 48px;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 1.2;
   text-align: left;
-  
 }
 
-.red-text{
+.red-text {
   color: red;
 }
+
 .home-activity-content {
   grid-area: home-activity-content;
   display: grid;
-  grid-template-rows: auto 1fr; 
+  grid-template-rows: auto 1fr;
   gap: 40px;
 }
 
 .home-chart {
- display: flex;
- justify-content: space-between; 
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-
-
-.user-main-info {
-  grid-area: user-main-info;
-}
-
+/* Media Query pour les écrans plus petits */
 @media (max-width: 1024px) {
   .home-container {
-    margin: 4rem ;
-   
-   
+    margin: 2rem;
   }
+
   .home-content {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     grid-template-areas: 
       "home-activity-content"
       "user-main-info";
-    gap: 30px; 
+    gap: 30px;
   }
 
   .home-activity-content {
     grid-template-rows: auto 1fr;
-    gap: 30px; 
+    gap: 30px;
   }
 
   .home-chart {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-    gap: 30px;  
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+  }
+  .user-main ul{
+   display:flex;
+   flex-wrap: wrap;
+   gap: 20px;
   }
 
   .text-home {
-    font-size: 36px; 
+    font-size: 36px;
   }
 }
-
 
 @media (max-width: 768px) {
   .home-container {
-    margin: 3rem ;
+    margin: 3rem auto;
   }
+
   .home-content {
     grid-template-columns: 1fr;
     grid-template-areas: 
       "home-activity-content"
       "user-main-info";
-    gap: 20px; 
+    gap: 20px;
   }
 
   .home-activity-content {
     grid-template-rows: auto 1fr;
-    gap: 20px; 
+    gap: 20px;
   }
 
   .home-chart {
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: 15px; 
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   .text-home {
-    font-size: 28px; 
+    font-size: 28px;
   }
 }
 
-
 @media (max-width: 480px) {
   .home-container {
-    margin: 2rem ;
-   
-   
+    margin: 2rem auto;
   }
+
   .home-content {
     grid-template-columns: 1fr;
     grid-template-areas: 
       "home-activity-content"
       "user-main-info";
-    gap: 10px; 
+    gap: 10px;
   }
 
   .home-activity-content {
     grid-template-rows: auto 1fr;
-    gap: 10px; 
+    gap: 10px;
   }
 
   .home-chart {
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: 10px; 
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .text-home {
-    font-size: 24px; 
+    font-size: 24px;
   }
 }

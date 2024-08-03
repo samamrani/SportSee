@@ -13,25 +13,14 @@ const usePerformanceData = (userId) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
         const performanceData = await getPerformanceApi(userId);
     
-        // console.log('Données récupérées:', performanceData);
-    
-        const performanceArray = performanceData.data.data; 
-        const kindMapping = performanceData.data.kind; 
-    
-        if (Array.isArray(performanceArray)) {
-          const transformedData = performanceArray.map(item => ({
-            ...item,
-            kind: kindMapping[item.kind] || 'Inconnu'
-          }));
-          setData(transformedData);
-        } else {
-          console.error('La structure des données est incorrecte:', performanceData);
-          setError('Données de performance invalides');
-        }
+         console.log('Données récupérées:', performanceData);
+         
+    setData(performanceData)
+     
       } catch (error) {
         setError('Échec de la récupération des données de performance');
         console.error('Erreur de récupération:', error);

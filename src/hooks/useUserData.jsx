@@ -21,8 +21,8 @@ const useUserData = (userId) => {
   useEffect(() => {
   
     const fetchUserData = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
         const userData = await getUserApi(userId);
         if (userData && userData.userInfos) {
           setData(userData);

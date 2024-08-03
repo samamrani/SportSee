@@ -14,8 +14,8 @@ const useUserScore = (userId) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
         // Récupérer les données principales de l'utilisateur
         const userData = await getUserApi(userId);
         if (userData) {
