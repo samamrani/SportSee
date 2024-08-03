@@ -4,12 +4,11 @@ import getUserApi from '../services/getUserApi';
 /**
  * Hook personnalisé pour récupérer les données d'un utilisateur.
  *
- * Ce hook gère l'état de récupération des données utilisateur, y compris
- * le chargement, les erreurs, et les données une fois récupérées.
+ * Ce hook gère l'état de chargement, les erreurs éventuelles, et les données utilisateur récupérées via une API.
  *
- * @param {number} userId  L'identifiant de l'utilisateur pour lequel les données sont récupérées.
- * @returns {Object} Un objet contenant les états suivants :
- * @returns {Object|null} data - Les données de l'utilisateur si la récupération a réussi, sinon `null`.
+ * @param {number} userId - Identifiant unique de l'utilisateur pour lequel les données sont récupérées.
+ * @returns {Object} - Un objet contenant les états suivants :
+ * @returns {Object|null} data - Les données de l'utilisateur, si la récupération a réussi, sinon `null`.
  * @returns {boolean} loading - Indique si les données sont en cours de chargement.
  * @returns {string|null} error - Message d'erreur s'il y en a eu une lors de la récupération des données, sinon `null`.
  */

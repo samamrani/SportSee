@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import getAverageSessionsApi from '../services/getAverageSessionsApi'; 
-import DetailsAverageTooltip from './DetailsAverageTooltip'; 
-import DetailsAverageTick from './DetailsAverageTick'; 
+// import getAverageSessionsApi from '../services/getAverageSessionsApi'; 
+ import DetailsAverageTooltip from './DetailsAverageTooltip'; 
+ import DetailsAverageTick from './DetailsAverageTick'; 
 import '../styles/main.scss';
+import useAverageData from '../hooks/useAverageData';
 
 /**
  * Composant pour afficher la durée moyenne des sessions de l'utilisateur sous forme de graphique linéaire.
@@ -17,48 +18,65 @@ import '../styles/main.scss';
  * @returns {JSX.Element} - Un élément JSX contenant le graphique linéaire et le titre associé.
  */
 
-const AverageSessions = ({ userId }) => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true) 
-      try {
-        const sessionData = await getAverageSessionsApi(userId);
-        console.log('Fetched sessionData:', sessionData); 
-
-      setData(sessionData);
-  } catch (error) {
-      setError('Échec de la récupération des données d\'activité');
-      console.error('Detailed error:', error);
-  }
-
-  finally {
-    setLoading(false);
-  }
-
-};
-    fetchData();
-  }, [userId]);
-
-  if(loading){
-    return <div>Chargement en cours...</div>
+const AverageSessions = (userId) => {
+const {data, error, loading} = useAverageData(userId)
+if (loading) {
+  return <div>Chargement...</div>;
 }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (data.length === 0) {
-    return <div>Aucune donnée disponible</div>;
+if (error) {
+  return <div>{error}</div>;
 }
- 
+
+if (data.length === 0) {
+  return <div>Aucune donnée disponible</div>;
+}
 const transformed = data.map((item, index) => ({
   ...item,
   num: index + 1
 }));
+
+//   const [data, setData] = useState([]);
+//   const [error, setError] = useState(null);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       setLoading(true) 
+//       try {
+//         const sessionData = await getAverageSessionsApi(userId);
+//         console.log('Fetched sessionData:', sessionData); 
+
+//       setData(sessionData);
+//   } catch (error) {
+//       setError('Échec de la récupération des données d\'activité');
+//       console.error('Detailed error:', error);
+//   }
+
+//   finally {
+//     setLoading(false);
+//   }
+
+// };
+//     fetchData();
+//   }, [userId]);
+
+//   if(loading){
+//     return <div>Chargement en cours...</div>
+// }
+
+//   if (error) {
+//     return <div>{error}</div>;
+//   }
+
+//   if (data.length === 0) {
+//     return <div>Aucune donnée disponible</div>;
+// }
+ 
+// const transformed = data.map((item, index) => ({
+//   ...item,
+//   num: index + 1
+// }));
 
 return ( 
  

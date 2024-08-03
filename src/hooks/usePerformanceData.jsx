@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import getPerformanceApi from '../services/getPerformanceApi';
-
 /**
  * Hook personnalisé pour récupérer les données de performance d'un utilisateur.
- * @param {number} userId - Identifiant unique de l'utilisateur.
- * @returns {Object} - Un objet contenant les données de performance, les erreurs et l'état de chargement.
+ *
+ * Ce hook gère l'état de chargement, les erreurs éventuelles, et les données de performance récupérées via une API.
+ *
+ * @param {number} userId - Identifiant unique de l'utilisateur pour lequel les données de performance sont récupérées.
+ * @returns {Object} - Un objet contenant les états suivants :
+ * @returns {Array} data - Les données de performance de l'utilisateur, si la récupération a réussi, sinon un tableau vide.
+ * @returns {boolean} loading - Indique si les données sont en cours de chargement.
+ * @returns {string|null} error - Message d'erreur s'il y en a eu une lors de la récupération des données, sinon `null`.
  */
 const usePerformanceData = (userId) => {
   const [data, setData] = useState([]);
