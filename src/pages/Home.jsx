@@ -31,19 +31,19 @@ function Home({ userId: propUserId = null }) {
           <h1 className='text-home'> Bonjour <span className="red-text">{data.userInfos.firstName}</span></h1>
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👋</p>
 
-          <div className='home-content'>
-            <div className='home-activity-content'>
-                <UserActivity userId={userId} /> 
-              <div className='home-chart'>
-                <AverageSession userId={userId} />
-                <UserPerformanceRadar userId={userId} />
-                <UserScoreRadial userId={userId} />
-              </div>   
-            </div>
-              <div className='user-main'>
-                <UserMainInfo userId={userId} /> 
+            <div className='home-content'>
+              <div className='home-activity-content'>
+                  <UserActivity userId={userId} /> 
+                <div className='home-chart'>
+                  <AverageSession userId={userId} />
+                  <UserPerformanceRadar userId={userId} />
+                  <UserScoreRadial userId={userId} />
+                </div>   
               </div>
-          </div> 
+                <div className='user-main'>
+                  <UserMainInfo userId={userId} /> 
+                </div>
+            </div> 
         </div>
       </section>
     </main>

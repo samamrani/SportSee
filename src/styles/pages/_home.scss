@@ -49,8 +49,8 @@
     grid-template-columns: 1fr 300px;
     grid-template-rows: auto 1fr;
     grid-template-areas: 
-      "home-activity-content user-main-info"
-      "home-activity-content user-main-info";
+      "home-activity-content user-main";
+      // "home-activity-content user-main";
     gap: 50px;
   }
 
@@ -72,14 +72,17 @@
 /* Media Query pour les écrans petits à moyens (768px à 1024px) */
 @media (max-width: 1024px) {
   .home-content {
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto auto; 
     grid-template-areas: 
       "home-activity-content"
-      "user-main-info";
-    gap: 20px;
+      "user-main"; 
   }
 
   .home-chart {
-    gap: 20px;
+    gap: 60px;
+    
   }
 
   .home-activity-content {
@@ -92,14 +95,15 @@
     font-size: 28px;
   }
 
-  .home-chart {
-    .home-chart {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
+ 
+    .user-main ul {
+     display: flex;
+     flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
     }
   }
-}
+
 
 /* Media Query pour les petits écrans (480px à 768px) */
 @media (max-width: 768px) {
@@ -112,7 +116,7 @@
   }
 
   .home-chart {
-    gap: 20px;
+    gap: 40px;
   }
 
   .text-home {

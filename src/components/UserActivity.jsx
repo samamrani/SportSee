@@ -85,8 +85,8 @@ const UserActivity = ({ userId }) => {
           </BarChart>
         </ResponsiveContainer>
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default UserActivity;
