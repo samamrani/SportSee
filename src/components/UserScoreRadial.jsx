@@ -28,21 +28,21 @@ const UserScoreRadial = ({ userId }) => {
         <div className="score-display">
           <div className="score-container">
             <ResponsiveContainer width="100%" height="100%">
-              <RadialBarChart
-                innerRadius="60%"
-                outerRadius="90%"
-                startAngle={180}
-                endAngle={-200}
-                data={[{ name: 'Score', value: Math.round(todayScore * 100) }]}
-              >
+            <RadialBarChart
+              innerRadius="60%"    // Rayon intérieur (l'espace vide au centre)
+              outerRadius="90%"    // Rayon extérieur (l'espace occupé par les barres)
+              startAngle={180}     // Angle de début pour le dessin du graphique radial (en degrés)
+              endAngle={-200}      // Angle de fin pour le dessin du graphique radial (en degrés)
+              data={[{ name: 'Score', value: Math.round(todayScore * 100) }]}
+            >
                 <RadialBar
-                  minAngle={15}
-                  clockWise
-                  dataKey="value"
-                  fill="#E60000"
-                  cornerRadius={100}
-                />
-                <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
+                  minAngle={15}       // Angle minimum pour dessiner chaque barre (en degrés)
+                  clockWise           // Indique que les barres doivent être dessinées dans le sens des aiguilles d'une montre
+                  dataKey="value"     // Clé dans les données pour déterminer la valeur affichée par la barre
+                  fill="#E60000"      // Couleur 
+                  cornerRadius={100}  // Arrondir les coins de la barre pour un effet circulaire
+                /> 
+                <PolarAngleAxis type="number" domain={[0, 100]} tick={false} /> 
                 <PolarRadiusAxis tick={false} />
               </RadialBarChart>
             </ResponsiveContainer>

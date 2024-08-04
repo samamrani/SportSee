@@ -1,13 +1,12 @@
 .home-container {
-  margin: 4rem auto;
+  margin: 4rem;
   max-width: 1440px;
-  padding: 0 1rem; 
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .home-content {
   display: grid;
-  grid-template-columns: 1fr 300px; 
+  grid-template-columns: 1fr 300px;
   grid-template-rows: auto 1fr;
   grid-template-areas: 
     "home-activity-content user-main-info"
@@ -39,34 +38,30 @@
   gap: 20px;
 }
 
-/* Media Query pour les écrans plus petits */
-@media (max-width: 1024px) {
+/* Media Query pour les écrans de taille moyenne (1024px à 1440px) */
+@media (max-width: 1440px) {
   .home-container {
-    margin: 2rem;
+    margin: 1rem;
   }
 
   .home-content {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: auto 1fr;
     grid-template-areas: 
-      "home-activity-content"
-      "user-main-info";
-    gap: 30px;
+      "home-activity-content user-main-info"
+      "home-activity-content user-main-info";
+    gap: 50px;
   }
 
   .home-activity-content {
-    grid-template-rows: auto 1fr;
-    gap: 30px;
+    gap: 40px;
   }
 
   .home-chart {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px;
-  }
-  .user-main ul{
-   display:flex;
-   flex-wrap: wrap;
-   gap: 20px;
+    gap: 60px;
   }
 
   .text-home {
@@ -74,36 +69,50 @@
   }
 }
 
-@media (max-width: 873px) {
-.home-chart{
-  display: grid;
-  
-    gap: 40px;
-}
-
-}
-@media (max-width: 768px) {
-  .home-container {
-    margin: 3rem auto;
-  }
-
+/* Media Query pour les écrans petits à moyens (768px à 1024px) */
+@media (max-width: 1024px) {
   .home-content {
-    grid-template-columns: 1fr;
     grid-template-areas: 
       "home-activity-content"
       "user-main-info";
     gap: 20px;
   }
 
+  .home-chart {
+    gap: 20px;
+  }
+
   .home-activity-content {
+
+    display: grid;
     grid-template-rows: auto 1fr;
+    gap: 40px;
+  }
+  .text-home {
+    font-size: 28px;
+  }
+
+  .home-chart {
+    .home-chart {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+  }
+}
+
+/* Media Query pour les petits écrans (480px à 768px) */
+@media (max-width: 768px) {
+  .home-container {
+    margin: 3rem auto;
+  }
+
+  .home-content {
     gap: 20px;
   }
 
   .home-chart {
-    display: grid;
-  
-    gap: 40px;
+    gap: 20px;
   }
 
   .text-home {
@@ -111,26 +120,17 @@
   }
 }
 
+/* Media Query pour les très petits écrans (moins de 480px) */
 @media (max-width: 480px) {
   .home-container {
     margin: 2rem auto;
   }
 
   .home-content {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-      "home-activity-content"
-      "user-main-info";
-    gap: 10px;
-  }
-
-  .home-activity-content {
-    grid-template-rows: auto 1fr;
     gap: 10px;
   }
 
   .home-chart {
-    display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
   }

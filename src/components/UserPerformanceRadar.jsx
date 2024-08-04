@@ -41,11 +41,15 @@ const UserPerformanceRadar = ({ userId }) => {
       <div className='performance-container'>
         <ResponsiveContainer width="100%" height="100%">
           <RadarChart outerRadius="60%" data={transformed}>
-            <PolarGrid stroke="#ddd" strokeWidth={2} />
-            <PolarAngleAxis dataKey="kind" tick={{ fontSize: 12, fill: '#fff' }} />
-            <PolarRadiusAxis axisLine={false} tick={false} tickLine={false} />
-            <Radar name="Performance" dataKey="value" stroke="#E60000" fill="#E60000" />
-          </RadarChart>
+           {/* crée une grille en arrière-plan */}
+           <PolarGrid stroke="#ddd" strokeWidth={2} />
+          {/* l'axe angulaire du graphique radar, affichant les labels des catégories */}
+          <PolarAngleAxis dataKey="kind" tick={{ fontSize: 12, fill: '#fff' }} />
+          {/* l'axe radial du graphique radar, mais sans lignes ni ticks visibles */}
+          <PolarRadiusAxis axisLine={false} tick={false} tickLine={false} />
+          {/* la série de données sur le graphique radar */}
+          <Radar name="Performance" dataKey="value" stroke="#E60000" fill="#E60000" />
+        </RadarChart>
         </ResponsiveContainer>
       </div>
     </div>

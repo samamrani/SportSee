@@ -48,35 +48,43 @@ const UserActivity = ({ userId }) => {
             </div>
 
             <div>
-                <ResponsiveContainer width="100%" height={320}>
-                    <BarChart data={transformed} barGap={8} barCategoryGap={1}>
-                        <CartesianGrid vertical={false} strokeDasharray="1 1" />
-                        <XAxis dataKey="num" tickLine={false} tick={{ fontSize: 14 }} dy={15} />
-                        <YAxis
-                            yAxisId="kilogram"
-                            dataKey="kilogram"
-                            type="number"
-                            domain={['dataMin - 2', 'dataMax + 1']}
-                            tickCount={4}
-                            axisLine={false}
-                            orientation="right"
-                            tickLine={false}
-                            tick={{ fontSize: 14 }}
-                            dx={15}
-                        />
-                        <YAxis
-                            yAxisId="calories"
-                            dataKey="calories"
-                            type="number"
-                            domain={['dataMin - 20', 'dataMax + 10']}
-                            hide={true}
-                        />
-                        <Tooltip content={<DetailsActivityTooltip />} />
-                        <Bar yAxisId="kilogram" dataKey="kilogram" fill="#282D30" barSize={7} radius={[50, 50, 0, 0]} />
-                        <Bar yAxisId="calories" dataKey="calories" fill="#E60000" barSize={7} radius={[50, 50, 0, 0]} />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+        {/* la taille du graphique en fonction de l'espace disponible */}
+        <ResponsiveContainer width="100%" height={320}>
+          <BarChart data={transformed} barGap={8} barCategoryGap={1}>
+            {/* Grille de fond pour le graphique */}
+            <CartesianGrid vertical={false} strokeDasharray="1 1" />
+            {/* Axe des X avec le numéro d'index */}
+            <XAxis dataKey="num" tickLine={false} tick={{ fontSize: 14 }} dy={15} />
+            {/* Axe des Y pour le poids avec une configuration spécifique */}
+            <YAxis
+              yAxisId="kilogram"
+              dataKey="kilogram"
+              type="number"
+              domain={['dataMin - 2', 'dataMax + 1']}
+              tickCount={4}
+              axisLine={false}
+              orientation="right"
+              tickLine={false}
+              tick={{ fontSize: 14 }}
+              dx={15}
+            />
+            {/* Axe des Y-masqué */}
+            <YAxis
+              yAxisId="calories"
+              dataKey="calories"
+              type="number"
+              domain={['dataMin - 20', 'dataMax + 10']}
+              hide={true}
+            />
+            {/* Tooltip personnalisé pour afficher les détails lors du survol */}
+            <Tooltip content={<DetailsActivityTooltip />} />
+            {/* Barres pour le poids avec une couleur spécifique et un rayon de bordure */}
+            <Bar yAxisId="kilogram" dataKey="kilogram" fill="#282D30" barSize={7} radius={[50, 50, 0, 0]} />
+            {/* Barres pour les calories avec une couleur différente et un rayon de bordure */}
+            <Bar yAxisId="calories" dataKey="calories" fill="#E60000" barSize={7} radius={[50, 50, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
         </div>
     );
 };

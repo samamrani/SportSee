@@ -36,66 +36,34 @@ const transformed = data.map((item, index) => ({
   num: index + 1
 }));
 
-//   const [data, setData] = useState([]);
-//   const [error, setError] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       setLoading(true) 
-//       try {
-//         const sessionData = await getAverageSessionsApi(userId);
-//         console.log('Fetched sessionData:', sessionData); 
-
-//       setData(sessionData);
-//   } catch (error) {
-//       setError('Échec de la récupération des données d\'activité');
-//       console.error('Detailed error:', error);
-//   }
-
-//   finally {
-//     setLoading(false);
-//   }
-
-// };
-//     fetchData();
-//   }, [userId]);
-
-//   if(loading){
-//     return <div>Chargement en cours...</div>
-// }
-
-//   if (error) {
-//     return <div>{error}</div>;
-//   }
-
-//   if (data.length === 0) {
-//     return <div>Aucune donnée disponible</div>;
-// }
- 
-// const transformed = data.map((item, index) => ({
-//   ...item,
-//   num: index + 1
-// }));
 
 return ( 
  
   <div className='average'>  
   <h1 className='titre-session'>Durée moyenne des <br /> sessions</h1>
   <div className='average-container'>
-    <ResponsiveContainer width="100%" height={200}>
-      <LineChart data={transformed}>
-        <XAxis dataKey="day" tick={<DetailsAverageTick />} axisLine={false} tickLine={false} interval={0}/>
-        <Tooltip content={<DetailsAverageTooltip />} />
-        <Line 
-          type="monotone" 
-          dataKey="sessionLength" 
-          stroke="#FFF" // Couleur blanche pour la courbe
-          strokeWidth={2}  // Épaisseur de la ligne
-          dot={false}      // Masquer les points sur la courbe
-        />
-      </LineChart>
-    </ResponsiveContainer>
+  <ResponsiveContainer width="100%" height={200}>
+          <LineChart data={transformed}>
+            {/* Axe des X avec des ticks personnalisés via DetailsAverageTick */}
+            <XAxis 
+              dataKey="day" 
+              tick={<DetailsAverageTick />} 
+              axisLine={false} 
+              tickLine={false} 
+              interval={0}
+            />
+            {/* Tooltip personnalisé pour afficher les détails lors du survol ou du clic */}
+            <Tooltip content={<DetailsAverageTooltip />} />
+            {/* Ligne représentant la durée des sessions */}
+            <Line 
+              type="monotone" 
+              dataKey="sessionLength" 
+              stroke="#FFF" // Couleur blanche pour la courbe
+              strokeWidth={2} // Épaisseur de la ligne
+              dot={false} // Masquer les points sur la courbe
+            />
+          </LineChart>
+        </ResponsiveContainer>
   </div>
 </div>
 
