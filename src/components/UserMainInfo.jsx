@@ -41,6 +41,8 @@ const UserMainInfo = ({ userId }) => {
     return <div>Aucune donnée disponible.</div>;
   }
 
+  console.log('User info:', userInfo);
+
   return (
     
       <ul className="performance-list">

@@ -18,7 +18,7 @@ import useAverageData from '../hooks/useAverageData';
  * @returns {JSX.Element} - Un élément JSX contenant le graphique linéaire et le titre associé.
  */
 
-const AverageSessions = (userId) => {
+const AverageSessions = ({userId}) => {
 const {data, error, loading} = useAverageData(userId)
 if (loading) {
   return <div>Chargement...</div>;
@@ -28,7 +28,7 @@ if (error) {
   return <div>{error}</div>;
 }
 
-if (data.length === 0) {
+if (!data || data.length === 0)  {
   return <div>Aucune donnée disponible</div>;
 }
 

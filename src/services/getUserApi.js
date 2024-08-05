@@ -1,28 +1,41 @@
+import { useMocks } from '../utils/consts';
+import { USER_MAIN_DATA } from './mockData'; 
+ 
 /**
- * Récupère les données d'un utilisateur depuis une API.
+ * Récupère les données d'un utilisateur.
  *
- * Cette fonction effectue une requête HTTP GET pour obtenir les données d'un utilisateur
- * en utilisant l'identifiant de l'utilisateur (`userId`). Elle retourne les données
- * de l'utilisateur au format JSON.
+ * Cette fonction récupère les données d'un utilisateur en utilisant soit des données fictives pour les tests,
+ * soit en faisant une requête HTTP à une API. Elle renvoie les données de l'utilisateur sous forme d'objet.
  *
- * @async
- * @function
- * @param {number} userId - L'identifiant de l'utilisateur pour lequel les données doivent être récupérées.
- * @returns {Promise<Object>} - Une promesse qui résout un objet contenant les données de l'utilisateur.
- * @throws {Error} - Lance une erreur si la requête échoue ou si la réponse n'est pas OK.
+ * @param {number} userId - L'identifiant unique de l'utilisateur dont les données doivent être récupérées.
+ * @returns {Promise<Object>} - Une promesse qui résout un objet contenant les données de l'utilisateur. 
+ * L'objet retourné a la forme suivante :
+ *   - { data: Object } - Les données de l'utilisateur, où `data` est l'objet représentant l'utilisateur.
+ * @throws {Error} - Lance une erreur si l'utilisateur n'est pas trouvé ou si une erreur HTTP se produit.
  */
-
 const getUserApi = async (userId) => {
-  try {
-    const response = await fetch(`http://localhost:3000/user/${userId}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+
+  if (useMocks) {
+    // Utilisation des données mockData
+
+    const user = USER_MAIN_DATA.find(user => user.id === userId);
+    if (!user) {
+      throw new Error('Utilisateur non trouvé');
     }
-    const result = await response.json();
-    return result.data; // Retourne directement l'objet utilisateur
-  } catch (error) {
-    console.error('Error in getUserApi:', error);
-    throw error;
+    return { data: user };
+  } else {
+    // Appel à l'API 
+    try {
+      const response = await fetch(`http://localhost:3000/user/${userId}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      return { data: result.data };
+    } catch (error) {
+      console.error('Error in getUserApi:', error);
+      throw error;
+    }
   }
 };
 

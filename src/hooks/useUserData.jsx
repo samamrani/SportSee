@@ -22,9 +22,9 @@ const useUserData = (userId) => {
     const fetchUserData = async () => {
       setLoading(true);
       try {
-        const userData = await getUserApi(userId);
-        if (userData && userData.userInfos) {
-          setData(userData);
+        const result = await getUserApi(userId);
+        if (result && result.data && result) {
+          setData(result.data); // Utilisez result.data pour accéder aux données utilisateur
         } else {
           throw new Error('Unexpected data structure');
         }

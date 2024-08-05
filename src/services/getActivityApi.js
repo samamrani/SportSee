@@ -1,25 +1,39 @@
+import { useMocks } from '../utils/consts';
+import { USER_ACTIVITY } from './mockData'; 
+
 /**
- * Récupère les données d'activité pour un utilisateur spécifique depuis l'API.
+ * Récupère les données d'activité pour un utilisateur spécifique.
+ * 
+ * Cette fonction utilise des données fictives lorsque `REACT_APP_USE_MOCKS` est défini sur `'true'`.
+ * Sinon, elle effectue une requête API pour obtenir les données réelles.
  *
- * Cette fonction envoie une requête HTTP GET à l'API pour obtenir les données d'activité d'un utilisateur
- * et renvoie les sessions d'activité. Si la requête échoue, elle lance une erreur.
- *
- * @async
- * @function
- * @param {number} userId - L'identifiant de l'utilisateur pour lequel récupérer les données d'activité.
- * @returns {Promise<Array<Object>>} - Une promesse qui résout un tableau d'objets représentant les sessions d'activité.
- * @throws {Error} - Lance une erreur si la requête échoue ou si la réponse n'est pas correcte.
+ * @param {number} userId - L'identifiant de l'utilisateur pour lequel les données d'activité sont récupérées.
+ * @returns {Promise<Object>} - Une promesse qui résout un objet contenant les données d'activité de l'utilisateur. 
+ * @throws {Error} - Lance une erreur si les données d'activité ne sont pas trouvées ou si une erreur HTTP se produit lors de la récupération des données via l'API.
  */
-
-async function getActivityApi(userId) {
-  const response = await fetch(`http://localhost:3000/user/${userId}/activity`);
-console.log(response)
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch activity data');
+const getActivityApi = async (userId) => {
+  if (useMocks) {
+    const activity = USER_ACTIVITY.find(activity => activity.userId === userId);
+    if (!activity) {
+      throw new Error('Données d\'activité non trouvées');
+    }
+    return activity.sessions;
+  } else {
+    try {
+      const response = await fetch(`http://localhost:3000/user/${userId}/activity`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      return result.data.sessions;
+    } catch (error) {
+      if (error.response) {
+        console.error('Error response:', await error.response.text());
+      }
+      console.error('Error in getUserActivity:', error);
+      throw error;
+    }
   }
-  const data = await response.json();
-  return data.data.sessions;  // Retourne directement le tableau de sessions d'activité
-}
+};
 
 export default getActivityApi;

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
+
 /**
  * Composant principal de l'application.
  * 
@@ -21,6 +22,7 @@ import NotFound from './pages/NotFound';
  * @returns {JSX.Element} Le rendu du composant `App`.
  */
 function App() {
+
   return (
     <Router>
       <MainLayout>

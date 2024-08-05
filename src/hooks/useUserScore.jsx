@@ -23,8 +23,11 @@ const useUserScore = (userId) => {
       try {
         // Récupérer les données principales de l'utilisateur
         const userData = await getUserApi(userId);
+
+        console.log('user',userData)
+
         if (userData) {
-          setTodayScore(userData.todayScore || userData.score);
+          setTodayScore(userData.data.todayScore || userData.data.score);
         } else {
           throw new Error('User data not found');
         }
