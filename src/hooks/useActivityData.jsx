@@ -25,8 +25,14 @@ const useActivityData = (userId) => {
                 // console.log('Fetching data for user:', userId);
                 const activityData = await getActivityApi(userId);
                 console.log('Activity data:', activityData);
-                    
-                setData(activityData);
+                   
+                // Transformation des données pour ajouter un champ 'num' pour l'axe X
+                const transformed = activityData.map((item, index) => ({
+                    ...item,
+                    num: index + 1
+                }));
+
+                setData(transformed);
             } catch (error) {
                 setError('Échec de la récupération des données d\'activité');
                 console.error('Detailed error:', error);

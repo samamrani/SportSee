@@ -24,7 +24,16 @@ const usePerformanceData = (userId) => {
     
          console.log('Données récupérées:', performanceData);
          
-    setData(performanceData)
+         const performanceArray = performanceData.data; 
+         const kindMapping = performanceData.kind; 
+       
+       
+           const transformed = performanceArray.map(item => ({
+             ...item,
+             kind: kindMapping[item.kind] || 'Inconnu'
+           }));
+
+    setData(transformed)
      
       } catch (error) {
         setError('Échec de la récupération des données de performance');

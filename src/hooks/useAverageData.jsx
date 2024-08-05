@@ -26,7 +26,12 @@ const useAverageData = ({ userId }) => {
           const sessionData = await getAverageSessionsApi(userId);
           console.log('Fetched sessionData:', sessionData); 
   
-        setData(sessionData);
+          const transformed = data.map((item, index) => ({
+            ...item,
+            num: index + 1
+          }));
+
+        setData(transformed);
     } catch (error) {
         setError('Échec de la récupération des données d\'activité');
         console.error('Detailed error:', error);

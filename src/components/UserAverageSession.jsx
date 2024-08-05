@@ -31,10 +31,7 @@ if (error) {
 if (data.length === 0) {
   return <div>Aucune donnée disponible</div>;
 }
-const transformed = data.map((item, index) => ({
-  ...item,
-  num: index + 1
-}));
+
 
 
 return ( 
@@ -43,7 +40,7 @@ return (
   <h1 className='titre-session'>Durée moyenne des <br /> sessions</h1>
   <div className='average-container'>
   <ResponsiveContainer width="100%" height={200}>
-          <LineChart data={transformed}>
+          <LineChart data={data}>
             {/* Axe des X avec des ticks personnalisés via DetailsAverageTick */}
             <XAxis 
               dataKey="day" 
